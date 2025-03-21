@@ -6,6 +6,11 @@ import { getAllUserAPI } from "../services/api.service";
 const UserPage = () => {
   const [dataUser, setDataUser] = useState([]);
 
+    useEffect(() => {
+    getDataUser();
+    console.log("run useEffect");
+  }, []);
+
   const getDataUser = async () => {
     const res = await getAllUserAPI();
     setDataUser(res.data);

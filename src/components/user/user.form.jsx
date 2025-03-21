@@ -33,9 +33,9 @@ const UserForm = (props) => {
         description: "User created successfully",
       });
       handleCloseAndClearModal();
-      console.log("run clear modal");
-      getDataUser();
-      console.log("run load data from form");
+      // console.log("run clear modal");
+      await getDataUser();
+      // console.log("run load data from form");
       
     } else {
       notification.error({
@@ -43,8 +43,8 @@ const UserForm = (props) => {
         description: JSON.stringify(res.message),
       });
     }
-    
-    console.log(res.data);
+
+    // console.log(res.data);
   };
 
   return (
