@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Drawer } from "antd";
 const UserDetail = (props) => {
   const { isUserDetailOpen, setIsUserDetailOpen, dataDetail } = props;
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [id, setId] = useState("");
+
+    useEffect(()=>{
+      if(dataDetail){
+        setFullName(dataDetail.fullName);
+        setId(dataDetail._id);
+        setPhone(dataDetail.phone);
+        setEmail(dataDetail.email);
+      }
+    },[dataDetail])
+
+
   const showDrawer = () => {
     setIsUserDetailOpen(true);
   };
@@ -15,10 +30,10 @@ const UserDetail = (props) => {
       </Button>
       <Drawer title="User Detail" onClose={onClose} open={isUserDetailOpen}>
         <div>
-          <p>Id: {dataDetail._id}</p>
-          <p>Full Name: {dataDetail.fullName}</p>
-          <p>Email: {dataDetail.email}</p>
-          <p>Phone: {dataDetail.phone}</p>
+          <p>Id: {id}</p>
+          <p>Full Name: {fullName}</p>
+          <p>Email: {email}</p>
+          <p>Phone: {phone}</p>
         </div>
       </Drawer>
     </>
