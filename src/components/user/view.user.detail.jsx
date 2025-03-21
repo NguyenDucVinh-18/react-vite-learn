@@ -25,9 +25,6 @@ const UserDetail = (props) => {
   };
   return (
     <>
-      <Button type="primary" onClick={showDrawer}>
-        Open
-      </Button>
       <Drawer title="User Detail" onClose={onClose} open={isUserDetailOpen}>
         <div>
           <p>Id: {id}</p>

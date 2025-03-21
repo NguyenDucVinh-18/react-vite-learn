@@ -1,6 +1,6 @@
-import { Space, Table, Tag } from "antd";
+import {  Popconfirm, Space, Table, Tag, notification } from "antd";
 import { useEffect, useState } from "react";
-import { getAllUserAPI } from "../../services/api.service";
+import { getAllUserAPI , deleteUserAPI} from "../../services/api.service";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import UpdateUserModal from "./update.user.modal";
 import UserDetail from "./view.user.detail";
@@ -11,6 +11,26 @@ const UserTable = (props) => {
   const [dataUserUpdate, setDataUserUpdate] = useState(null);
   const [dataDetail, setDataDetail] = useState(null);
   const { getDataUser } = props;
+
+  const handleConfirmDetele = async (id) => {
+    const res = await deleteUserAPI(id);
+    console.log("delete user successfully");
+    // console.log(res);
+    if (res.data) {
+      console.log("notification successfully1");
+      console.log("run load data");
+      await getDataUser();
+      notification.success({
+        message: "Success",
+        description: "Delete user successfully",
+      });
+    } else {
+      notification.error({
+        message: "Error",
+        description: JSON.stringify(res.message),
+      });
+    }
+  };
 
   const columns = [
     {
@@ -48,7 +68,16 @@ const UserTable = (props) => {
               setDataUserUpdate(record);
             }}
           />
-          <DeleteOutlined />
+          <Popconfirm
+            title="Delete user"
+            description="Are you sure to delete this user?"
+            onConfirm={() => handleConfirmDetele(record._id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <DeleteOutlined />
+          </Popconfirm>
+          
         </Space>
       ),
     },
