@@ -1,38 +1,30 @@
 import { Table } from "antd";
-const UserTable = () => {
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+import { useEffect, useState } from "react";
+import { getAllUserAPI } from "../../services/api.service";
+const UserTable = (props) => {
+
+  const {getDataUser, dataUser} = props;
+
+  useEffect(() => {
+    getDataUser();
+    console.log("run useEffect");
+  }, []);
 
   const columns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: "ID",
+      dataIndex: "_id",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Full Name",
+      dataIndex: "fullName",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Email",
+      dataIndex: "email",
     },
   ];
-  return <Table dataSource={dataSource} columns={columns} />;
+  return <Table dataSource={dataUser} columns={columns} rowKey={"_id"} />;
 };
 
 export default UserTable;
