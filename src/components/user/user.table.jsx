@@ -96,6 +96,8 @@ const UserTable = (props) => {
         isUserDetailOpen={isUserDetailOpen}
         setIsUserDetailOpen={setIsUserDetailOpen}
         dataDetail={dataDetail}
+        setDataDetail={setDataDetail}
+        getDataUser={getDataUser}
       />
     </>
   );
