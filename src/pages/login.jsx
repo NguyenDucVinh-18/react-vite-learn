@@ -8,7 +8,7 @@ const LoginPage = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = React.useState(false);
   let navigate = useNavigate();
-    const {setUser} = useContext(AuthContext)
+    const {user,setUser} = useContext(AuthContext)
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -27,6 +27,7 @@ const LoginPage = () => {
           });
     }
     setLoading(false);
+    console.log("user:", user);
   };
 
   return (
