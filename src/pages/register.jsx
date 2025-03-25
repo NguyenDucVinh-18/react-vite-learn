@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Input, notification } from "antd";
 import { registerUserAPI } from "../services/api.service";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
     const [form] = Form.useForm();
@@ -88,9 +88,14 @@ const RegisterPage = () => {
       </Form.Item>
 
 
+        <div style={{alignContent:"space-between"}}>
         <Button type="primary" onClick={() => form.submit()}>
           Submit
         </Button>
+        <div>
+            <Link to="/login">I have an account</Link>
+        </div>
+        </div>
     </Form>
     </div>
   );
